@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtWidgets>
+#include <QDebug>
+#include "sortvisualizer.h"
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +22,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    SortVisualizer *sorter;
 };
 #endif // MAINWINDOW_H
