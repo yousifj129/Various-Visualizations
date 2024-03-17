@@ -16,11 +16,13 @@ public:
     int a = 3;
 
 public slots:
+    void changeSortMethod(int method);
     void startVisualization();
     void stopVisualization();
     void randomizeValues();
     void changeSize(uint16_t s);
-    void sortStep();
+    void bubbleSortStep();
+    void insertionSortStep();
 protected:
     void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
@@ -33,8 +35,11 @@ private:
     QTimer *timer;
     int16_t compared1;
     int16_t compared2;
-    uint16_t i =0;
-    uint16_t j =0;
+    int16_t i =0;
+    int16_t j =0;
+    int16_t starti=0;
+    int16_t startj=0;
+    uint16_t key;
     void resizeColumns();
 
 };

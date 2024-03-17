@@ -235,7 +235,26 @@ padding-left:30px;
 padding-right:30px;
 font-size:30px;
 background-color:#535c68;
-}</string>
+}
+
+QPushButton:hover{
+background-color:#576574;
+}
+
+QComboBox{
+padding:5px;
+font-size:25px;
+color:white;
+}
+
+QComboBox QAbstractItemView
+{
+padding:5px;
+font-size:25px;
+color:white;
+}
+
+</string>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
@@ -279,6 +298,20 @@ color:red;
             <property name="text">
              <string>Menu</string>
             </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="sortMethodCombo">
+            <item>
+             <property name="text">
+              <string>Bubble sort</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Insertion sort</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item>

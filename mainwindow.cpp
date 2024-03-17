@@ -40,6 +40,9 @@ MainWindow::MainWindow(QWidget *parent)
     /*connect(ui->addRectButton, &QPushButton::clicked, [test]{
         test->a=3;
     });*/
+
+    ui->sortMethodCombo->setStyleSheet("background-color:#535c68;");
+    connect(ui->sortMethodCombo, &QComboBox::activated, [this]{this->sorter->changeSortMethod(ui->sortMethodCombo->currentIndex());});
 }
 
 

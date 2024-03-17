@@ -7,19 +7,48 @@ SortVisualizer::SortVisualizer(QWidget *parent)
 {
     qDebug()<<"Hello!";
     timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &SortVisualizer::sortStep);
+    connect(timer, &QTimer::timeout, this, &SortVisualizer::bubbleSortStep);
 
-    changeSize(20);
+    changeSize(100);
+    //values={90,80,80,60,30,1,100,3,2,1};
 }
 
 SortVisualizer::~SortVisualizer()
 {
     qDebug()<<"Goodbye!";
 }
+
+void SortVisualizer::changeSortMethod(int method)
+{
+    disconnect(timer, &QTimer::timeout,0,0);
+    switch(method)
+    {
+    case 0:
+    connect(timer, &QTimer::timeout, this, &SortVisualizer::bubbleSortStep);
+    starti=0;
+    startj=0;
+
+    break;
+    case 1:
+    connect(timer, &QTimer::timeout, this, &SortVisualizer::insertionSortStep);
+    starti=1;
+    startj=0;
+
+    break;
+    default:
+    connect(timer, &QTimer::timeout, this, &SortVisualizer::bubbleSortStep);
+    starti=0;
+    startj=0;
+
+    break;
+    }
+}
 void SortVisualizer::startVisualization()
 {
-    qDebug()<<"Starting!";
-    timer->start(20);
+    i=starti;
+    j=startj;
+    key=values[starti];
+    timer->start(2);
 }
 
 void SortVisualizer::stopVisualization()
@@ -45,7 +74,7 @@ void SortVisualizer::changeSize(uint16_t s)
     resizeColumns();
 }
 
-void SortVisualizer::sortStep()
+void SortVisualizer::bubbleSortStep()
 {
     auto n = values.size();
     if(j==n-1) timer->stop();
@@ -65,6 +94,30 @@ void SortVisualizer::sortStep()
     qDebug()<<"sorting!";
     update();
 }
+
+void SortVisualizer::insertionSortStep()
+{
+    qDebug()<<"sortstart";
+    auto n = values.size();
+
+    if(i==n) timer->stop();
+
+    if(j>=0 && values[j]>key)
+    {
+            std::swap(values[j],values[j+1]);
+            j--;
+            compared1=j+1;
+            compared2=j;
+    }
+    else{
+            compared1=j+1;
+            compared2=j;
+            i++;
+            j=i-1;
+            key=values[i];
+    }
+    update();
+}
 void SortVisualizer::paintEvent(QPaintEvent *event)
 {
     qDebug()<<"drawing!";
@@ -77,8 +130,8 @@ void SortVisualizer::paintEvent(QPaintEvent *event)
     for(int i=0; i<values.size(); i++) painter.drawRect(colWidth*i, height()-values[i]*colHeight, colWidth, values[i]*colHeight);
 
     qDebug()<<"Compared1: "<<compared1<<"Compared2: "<<compared2;
-    if((compared1 != -1 || compared2 != -1) && timer->isActive()){
-            painter.setBrush(Qt::green);
+    if(timer->isActive()){
+    painter.setBrush(Qt::green);
     painter.drawRect(colWidth*compared1, height()-values[compared1]*colHeight,colWidth,values[compared1]*colHeight);
     painter.drawRect(colWidth*compared2, height()-values[compared2]*colHeight,colWidth,values[compared2]*colHeight);
     }
