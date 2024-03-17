@@ -23,6 +23,7 @@ public slots:
     void changeSize(uint16_t s);
     void bubbleSortStep();
     void insertionSortStep();
+    void reset();
 protected:
     void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;

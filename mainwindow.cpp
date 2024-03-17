@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     auto *startButton = ui->startButton;
     auto *aboutButton = ui->aboutButton;
     auto *exitButton = ui->exitButton;
-
+    auto *resetButton = ui->resetButton;
     auto *startVisualizationButton = ui->startVisualizationButton;
     auto *stopVisualizationButton = ui->stopVisualizationButton;
     auto *toMenuButton = ui->toMenuButton;
@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->sortMethodCombo->setStyleSheet("background-color:#535c68;");
     connect(ui->sortMethodCombo, &QComboBox::activated, [this]{this->sorter->changeSortMethod(ui->sortMethodCombo->currentIndex());});
+    connect(resetButton,&QPushButton::clicked,[this]{this->sorter->reset();});
 }
 
 

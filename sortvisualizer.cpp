@@ -151,3 +151,12 @@ void SortVisualizer::resizeColumns()
     colHeight=height()/maxValue;
 }
 
+void SortVisualizer::reset()
+{
+    randomizeValues();
+    i=starti;
+    j=startj;
+    key=values[starti];
+    timer->stop();
+    update();
+}
