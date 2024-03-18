@@ -23,6 +23,7 @@ public slots:
     void changeSize(uint16_t s);
     void bubbleSortStep();
     void insertionSortStep();
+    void selectionSortStep();
     void reset();
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -41,6 +42,7 @@ private:
     int16_t starti=0;
     int16_t startj=0;
     uint16_t key;
+    int method;
     void resizeColumns();
 
 };

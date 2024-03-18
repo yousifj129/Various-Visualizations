@@ -319,6 +319,11 @@ color:red;
               <string>Insertion sort</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Selection sort</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item>

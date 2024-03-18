@@ -16,6 +16,7 @@ SortVisualizer::SortVisualizer(QWidget *parent)
 SortVisualizer::~SortVisualizer()
 {
     qDebug()<<"Goodbye!";
+    method=0;
 }
 
 void SortVisualizer::changeSortMethod(int method)
@@ -27,27 +28,39 @@ void SortVisualizer::changeSortMethod(int method)
     connect(timer, &QTimer::timeout, this, &SortVisualizer::bubbleSortStep);
     starti=0;
     startj=0;
+    method=0;
 
     break;
     case 1:
     connect(timer, &QTimer::timeout, this, &SortVisualizer::insertionSortStep);
     starti=1;
     startj=0;
-
+    method=1;
+    key=values[starti];
+    break;
+    case 2:
+    connect(timer, &QTimer::timeout,this, &SortVisualizer::selectionSortStep);
+    starti=0;
+    startj=0;
+    method=2;
+    key=0;
     break;
     default:
     connect(timer, &QTimer::timeout, this, &SortVisualizer::bubbleSortStep);
     starti=0;
-    startj=0;
+    startj=1;
 
     break;
     }
+    timer->stop();
 }
 void SortVisualizer::startVisualization()
 {
     i=starti;
     j=startj;
-    key=values[starti];
+    if(method==1) key=values[starti];
+    else if(method==2) key=starti;
+
     timer->start(2);
 }
 
@@ -118,6 +131,33 @@ void SortVisualizer::insertionSortStep()
     }
     update();
 }
+
+void SortVisualizer::selectionSortStep()
+{
+    qDebug()<<"select!!";
+    qDebug()<<key;
+    auto n=values.size();
+    if(i<n){
+    if(j<n){
+            qDebug()<<"hi";
+            if(values[j]<values[key]) key=j;
+            compared1=j;
+            compared2=key;
+            j++;
+            qDebug()<<"hi2";
+    }
+    else{
+            std::swap(values[key],values[i]);
+            i++;
+            j=i+1;
+            key=i;
+    }
+    }
+    qDebug()<<"IDK";
+    update();
+}
+
+
 void SortVisualizer::paintEvent(QPaintEvent *event)
 {
     qDebug()<<"drawing!";
