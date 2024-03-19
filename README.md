@@ -3,6 +3,8 @@
 This program demonstrates algorithms, math concepts, physics phenomena etc.
 The project is currently in it's early stages.
 
+## Demonstration
+https://github.com/sebe324/Various-Visualizations/assets/58781463/09f0a35e-2213-4f29-bb1a-632a0f3df8a9
 ## To-do list
 - #### Sorting algorithms:
   - Bubble sort ✔️
