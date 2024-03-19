@@ -45,12 +45,18 @@ private:
     int bruh =0;
     uint16_t key;
     int16_t size = 1;
-    int r;
-    int l;
+    int r=-1;
+    int l=-1;
     int method;
+    int mergeSize;
+    int left_end;
+    int right_start;
+    int p =0;
+    int k = 0;
+    bool somebool=true;
     std::vector<int> temp;
     void resizeColumns();
-    void merge(std::vector<uint16_t> &arr, int left_start, int mid, int right_end);
+    void merge(int left_start, int mid, int right_end);
 
 };
 

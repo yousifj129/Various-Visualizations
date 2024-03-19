@@ -7,8 +7,8 @@ The project is currently in it's early stages.
 - #### Sorting algorithms:
   - Bubble sort ✔️
   - Insertion sort ✔️
-  - Selection sort ❌
-  - Merge sort ❌
+  - Selection sort ✔️
+  - Merge sort ✔️
   - Quick sort ❌
 - #### Collision detection:
   - Axis Aligned Bounding Box ❌

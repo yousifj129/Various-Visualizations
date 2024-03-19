@@ -46,7 +46,6 @@ void SortVisualizer::changeSortMethod(int method)
     key=0;
     break;
     case 3:
-        qDebug()<<"what the f";
         connect(timer, &QTimer::timeout, this, &SortVisualizer::mergeSortStep);
         starti=1;
         startj=0;
@@ -167,13 +166,11 @@ void SortVisualizer::selectionSortStep()
 void SortVisualizer::mergeSortStep()
 {
     int n = values.size();
-    qDebug()<<"hi?";
     if(i<=n-1){
         if(j<n-1){
             int mid = std::min(j + i - 1, n - 1);
             int right_end = std::min(j + 2 * i - 1, n - 1);
-            merge(values, j, mid, right_end);
-            j+=2*i;
+            merge(j,mid,right_end);
         }
         else{
         j=0;
@@ -187,31 +184,53 @@ void SortVisualizer::mergeSortStep()
     update();
 }
 
-void SortVisualizer::merge(std::vector<uint16_t> &arr, int left_start, int mid, int right_end)
+void SortVisualizer::merge(int left_start, int mid, int right_end)
 {
-    int size = right_end-left_start+1;
-    int left_end=mid;
-    int right_start=mid+1;
 
-    std::vector<int> temp(size);
-    int i=0;
-    int r = right_start;
-    int l = left_start;
-    while(l <= left_end && r <= right_end)
-        arr[l]<arr[r] ?  temp[i++] = arr[l++] : temp[i++] = arr[r++];
+    size = right_end-left_start+1;
+    left_end=mid;
+    right_start=mid+1;
+    if(somebool){
+    temp.resize(size);
+    p=0;
+    r = right_start;
+    l = left_start;
+    }
 
-    while(l<=left_end) temp[i++] = arr[l++];
-    while(r<=right_end) temp[i++] = arr[r++];
+    if(l <= left_end && r <= right_end){
+    if(values[l]<values[r]){
+        compared1=j+p;
+        compared2=l;
+        temp[p++] = values[l++];
+    }
+    else{
+        compared1=j+p;
+        compared2=r;
+        temp[p++] = values[r++];
 
-    for (int k = 0; k < size; ++k) {
-        arr[left_start + k] = temp[k];
+    }
+        somebool=false;
+    }
+    else{
+        while(l<=left_end) temp[p++] = values[l++];
+        while(r<=right_end) temp[p++] = values[r++];
+
+        if(k < size) {
+        values[left_start + k] = temp[k];
+        k++;
+
+        }
+        else{
+        j+=i*2;
+        somebool=true;
+        k=0;
+        }
     }
 }
 
 
 void SortVisualizer::paintEvent(QPaintEvent *event)
 {
-    qDebug()<<"drawing!";
     Q_UNUSED(event);
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, false);
@@ -220,7 +239,6 @@ void SortVisualizer::paintEvent(QPaintEvent *event)
     painter.setPen(Qt::PenStyle::NoPen);
     for(int i=0; i<values.size(); i++) painter.drawRect(colWidth*i, height()-values[i]*colHeight, colWidth, values[i]*colHeight);
 
-    qDebug()<<"Compared1: "<<compared1<<"Compared2: "<<compared2;
     if(timer->isActive()){
     painter.setBrush(Qt::green);
     painter.drawRect(colWidth*compared1, height()-values[compared1]*colHeight,colWidth,values[compared1]*colHeight);
