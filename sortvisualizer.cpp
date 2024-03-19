@@ -1,6 +1,7 @@
 #include "sortvisualizer.h"
 
 #include "utils.h"
+#include "Sorters/abstractsorter.h"
 
 SortVisualizer::SortVisualizer(QWidget *parent)
     : QWidget(parent)
@@ -11,6 +12,9 @@ SortVisualizer::SortVisualizer(QWidget *parent)
 
     changeSize(100);
     //values={90,80,80,60,30,1,100,3,2,1};
+
+    AbstractSorter test;
+    qDebug()<<test.a;
 }
 
 SortVisualizer::~SortVisualizer()

@@ -9,6 +9,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_PREFIX_PATH "C:/Qt/6.5.3/mingw_64")
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
@@ -70,3 +71,8 @@ install(TARGETS Various-Visualizations
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Various-Visualizations)
 endif()
+
+
+add_subdirectory(Sorters)
+
+target_link_libraries(Various-Visualizations PRIVATE sorters)
