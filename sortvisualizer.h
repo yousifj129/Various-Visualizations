@@ -24,6 +24,7 @@ public slots:
     void bubbleSortStep();
     void insertionSortStep();
     void selectionSortStep();
+    void mergeSortStep();
     void reset();
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -41,9 +42,15 @@ private:
     int16_t j =0;
     int16_t starti=0;
     int16_t startj=0;
+    int bruh =0;
     uint16_t key;
+    int16_t size = 1;
+    int r;
+    int l;
     int method;
+    std::vector<int> temp;
     void resizeColumns();
+    void merge(std::vector<uint16_t> &arr, int left_start, int mid, int right_end);
 
 };
 

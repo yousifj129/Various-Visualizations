@@ -45,6 +45,13 @@ void SortVisualizer::changeSortMethod(int method)
     method=2;
     key=0;
     break;
+    case 3:
+        qDebug()<<"what the f";
+        connect(timer, &QTimer::timeout, this, &SortVisualizer::mergeSortStep);
+        starti=1;
+        startj=0;
+        method=3;
+    break;
     default:
     connect(timer, &QTimer::timeout, this, &SortVisualizer::bubbleSortStep);
     starti=0;
@@ -61,7 +68,7 @@ void SortVisualizer::startVisualization()
     if(method==1) key=values[starti];
     else if(method==2) key=starti;
 
-    timer->start(2);
+    timer->start(10);
 }
 
 void SortVisualizer::stopVisualization()
@@ -155,6 +162,50 @@ void SortVisualizer::selectionSortStep()
     }
     qDebug()<<"IDK";
     update();
+}
+
+void SortVisualizer::mergeSortStep()
+{
+    int n = values.size();
+    qDebug()<<"hi?";
+    if(i<=n-1){
+        if(j<n-1){
+            int mid = std::min(j + i - 1, n - 1);
+            int right_end = std::min(j + 2 * i - 1, n - 1);
+            merge(values, j, mid, right_end);
+            j+=2*i;
+        }
+        else{
+        j=0;
+        i*=2;
+        }
+    }
+    else{
+        timer->stop();
+        qDebug()<<"ENDED";
+    }
+    update();
+}
+
+void SortVisualizer::merge(std::vector<uint16_t> &arr, int left_start, int mid, int right_end)
+{
+    int size = right_end-left_start+1;
+    int left_end=mid;
+    int right_start=mid+1;
+
+    std::vector<int> temp(size);
+    int i=0;
+    int r = right_start;
+    int l = left_start;
+    while(l <= left_end && r <= right_end)
+        arr[l]<arr[r] ?  temp[i++] = arr[l++] : temp[i++] = arr[r++];
+
+    while(l<=left_end) temp[i++] = arr[l++];
+    while(r<=right_end) temp[i++] = arr[r++];
+
+    for (int k = 0; k < size; ++k) {
+        arr[left_start + k] = temp[k];
+    }
 }
 
 

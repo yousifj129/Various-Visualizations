@@ -324,6 +324,11 @@ color:red;
               <string>Selection sort</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Merge sort</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item>
@@ -353,7 +358,7 @@ color:red;
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
