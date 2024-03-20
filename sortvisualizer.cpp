@@ -1,76 +1,66 @@
 #include "sortvisualizer.h"
 
 #include "utils.h"
-#include "Sorters/abstractsorter.h"
+#include "Sorters/sorters.h"
 
 SortVisualizer::SortVisualizer(QWidget *parent)
     : QWidget(parent)
 {
     qDebug()<<"Hello!";
     timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &SortVisualizer::bubbleSortStep);
-
+    changeSortMethod(0);
+    connect(timer, &QTimer::timeout, this, &SortVisualizer::sortStep);
     changeSize(100);
     //values={90,80,80,60,30,1,100,3,2,1};
 
-    AbstractSorter test;
-    qDebug()<<test.a;
 }
 
 SortVisualizer::~SortVisualizer()
 {
     qDebug()<<"Goodbye!";
+    delete sorter;
     method=0;
+}
+
+void SortVisualizer::sortStep()
+{
+    sorter->sortStep();
+    update();
 }
 
 void SortVisualizer::changeSortMethod(int method)
 {
-    disconnect(timer, &QTimer::timeout,0,0);
     switch(method)
     {
     case 0:
-    connect(timer, &QTimer::timeout, this, &SortVisualizer::bubbleSortStep);
-    starti=0;
-    startj=0;
-    method=0;
+        delete sorter;
+        sorter = new BubbleSorter(values,timer,compared1,compared2);
 
     break;
     case 1:
-    connect(timer, &QTimer::timeout, this, &SortVisualizer::insertionSortStep);
-    starti=1;
-    startj=0;
-    method=1;
-    key=values[starti];
+    delete sorter;
+    sorter = new InsertionSorter(values,timer,compared1,compared2);
     break;
     case 2:
-    connect(timer, &QTimer::timeout,this, &SortVisualizer::selectionSortStep);
-    starti=0;
-    startj=0;
-    method=2;
-    key=0;
+    delete sorter;
+    sorter = new SelectionSorter(values,timer,compared1,compared2);
     break;
     case 3:
-        connect(timer, &QTimer::timeout, this, &SortVisualizer::mergeSortStep);
-        starti=1;
-        startj=0;
-        method=3;
+
+    delete sorter;
+    sorter = new MergeSorter(values,timer,compared1,compared2);
+
     break;
     default:
-    connect(timer, &QTimer::timeout, this, &SortVisualizer::bubbleSortStep);
-    starti=0;
-    startj=1;
-
+    delete sorter;
+    sorter = new BubbleSorter(values,timer,compared1,compared2);
     break;
     }
     timer->stop();
 }
 void SortVisualizer::startVisualization()
 {
-    i=starti;
-    j=startj;
-    if(method==1) key=values[starti];
-    else if(method==2) key=starti;
-
+    sorter->reset();
     timer->start(10);
 }
 
@@ -123,8 +113,9 @@ void SortVisualizer::insertionSortStep()
     qDebug()<<"sortstart";
     auto n = values.size();
 
-    if(i==n) timer->stop();
-
+    if(i==n){ timer->stop();
+            qDebug()<<"ez";
+    }
     if(j>=0 && values[j]>key)
     {
             std::swap(values[j],values[j+1]);

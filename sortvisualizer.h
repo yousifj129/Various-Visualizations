@@ -6,7 +6,7 @@
 #include <vector>
 #include <stdint.h>
 #include <QTimer>
-
+#include "Sorters/abstractsorter.h"
 class SortVisualizer : public QWidget
 {
     Q_OBJECT
@@ -26,6 +26,7 @@ public slots:
     void selectionSortStep();
     void mergeSortStep();
     void reset();
+    void sortStep();
 protected:
     void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
@@ -57,6 +58,7 @@ private:
     std::vector<int> temp;
     void resizeColumns();
     void merge(int left_start, int mid, int right_end);
+    AbstractSorter *sorter;
 
 };
 

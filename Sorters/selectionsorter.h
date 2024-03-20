@@ -7,9 +7,13 @@ class SelectionSorter : public AbstractSorter
 {
 public:
 
-    SelectionSorter();
-    virtual void sortStep(std::vector<uint16_t> &values);
+    SelectionSorter(std::vector<uint16_t> &values, QTimer *timer, int16_t &compared1, int16_t &compared2);
+    virtual void sortStep();
     virtual void reset();
+private:
+    int i;
+    int j;
+    int key;
 };
 
 #endif
