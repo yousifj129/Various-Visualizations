@@ -13,6 +13,10 @@ void InsertionSorter::sortStep()
     auto n = values->size();
 
     qDebug()<<i;
+    if(i==n){
+        return;
+        timer->stop();
+    }
     if(j>=0 && values->at(j)>key)
     {
         std::swap(values->at(j),values->at(j+1));
