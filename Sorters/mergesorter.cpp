@@ -30,7 +30,6 @@ void MergeSorter::sortStep()
 
 void MergeSorter::mergeStep(int left_start, int mid, int right_end)
 {
-    qDebug()<<"Merge step!";
     size = right_end-left_start+1;
     left_end=mid;
     right_start=mid+1;
@@ -70,8 +69,6 @@ void MergeSorter::mergeStep(int left_start, int mid, int right_end)
             k=0;
         }
     }
-
-    qDebug()<<"i: "<<i<<"j: "<<j<<"k: "<<k<<"p: "<<p;
 }
 void MergeSorter::reset()
 {

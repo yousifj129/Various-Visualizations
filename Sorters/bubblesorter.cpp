@@ -9,8 +9,8 @@ BubbleSorter::BubbleSorter(std::vector<uint16_t> &values, QTimer *timer, int16_t
 
 void BubbleSorter::sortStep()
 {
-    qDebug()<<"hi bubble";
     auto n = values->size();
+
     if(j==n-1) timer->stop();
     if(i<n-j-1){
         *compared1=i;

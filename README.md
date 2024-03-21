@@ -11,7 +11,7 @@ https://github.com/sebe324/Various-Visualizations/assets/58781463/09f0a35e-2213-
   - Insertion sort ✔️
   - Selection sort ✔️
   - Merge sort ✔️
-  - Quick sort ❌
+  - Quick sort ✔️
 - #### Collision detection:
   - Axis Aligned Bounding Box ❌
   - Separated Axis Theorem ❌
