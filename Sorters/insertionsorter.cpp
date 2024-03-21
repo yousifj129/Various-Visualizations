@@ -12,7 +12,6 @@ void InsertionSorter::sortStep()
 {
     auto n = values->size();
 
-    qDebug()<<i;
     if(i==n){
         return;
         timer->stop();

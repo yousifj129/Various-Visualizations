@@ -14,12 +14,10 @@ void SelectionSorter::sortStep()
     auto n=values->size();
     if(i<n){
         if(j<n){
-            qDebug()<<"hi";
             if(values->at(j)<values->at(key)) key=j;
             *compared1=j;
             *compared2=key;
             j++;
-            qDebug()<<"hi2";
         }
         else{
             std::swap(values->at(key),values->at(i));
