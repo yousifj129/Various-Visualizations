@@ -9,7 +9,7 @@ The project is currently in it's early stages.
   - Insertion sort ✔️
   - Selection sort ✔️
   - Merge sort ✔️
-  - Quick sort ❌
+  - Quick sort ✔️
 - #### Collision detection:
   - Axis Aligned Bounding Box ❌
   - Separated Axis Theorem ❌
