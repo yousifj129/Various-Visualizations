@@ -10,7 +10,7 @@ SortVisualizer::SortVisualizer(QWidget *parent)
     timer = new QTimer(this);
     sorter = new BubbleSorter(values,timer,compared1,compared2);
     connect(timer, &QTimer::timeout, this, &SortVisualizer::sortStep);
-    changeSize(50);
+    changeSize(100);
 
 }
 
@@ -47,6 +47,10 @@ void SortVisualizer::changeSortMethod(int method)
     sorter = new MergeSorter(values,timer,compared1,compared2);
 
     break;
+    case 4:
+    delete sorter;
+    sorter = new QuickSorter(values,timer,compared1,compared2);
+    break;
     default:
     delete sorter;
     sorter = new BubbleSorter(values,timer,compared1,compared2);
@@ -63,6 +67,7 @@ void SortVisualizer::startVisualization()
 void SortVisualizer::stopVisualization()
 {
     timer->stop();
+    sorter->reset();
 }
 
 
