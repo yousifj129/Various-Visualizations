@@ -34,7 +34,7 @@ background-color:#2f3640;
       <property name="currentIndex">
        <number>1</number>
       </property>
-      <widget class="QWidget" name="Menu">
+      <widget class="QWidget" name="MainMenu">
        <property name="styleSheet">
         <string notr="true">QPushButton{
 font-size:30px;
@@ -225,7 +225,8 @@ color:white;
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="Visualization">
+      <widget class="QWidget" name="CategoryMenu"/>
+      <widget class="QWidget" name="SortVisualization">
        <property name="styleSheet">
         <string notr="true">QPushButton{
 color:white;
@@ -353,6 +354,9 @@ color:red;
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="CollisionVisualization"/>
+      <widget class="QWidget" name="PathfindingVisualization"/>
+      <widget class="QWidget" name="LogicGateVisualization"/>
      </widget>
     </item>
    </layout>
