@@ -6,7 +6,7 @@
 #include <vector>
 #include <stdint.h>
 #include <QTimer>
-#include "Sorters/abstractsorter.h"
+#include "../Sorters/abstractsorter.h"
 class SortVisualizer : public QWidget
 {
     Q_OBJECT
