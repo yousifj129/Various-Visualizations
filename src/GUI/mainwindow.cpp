@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     auto *idk = new QVBoxLayout(ui->customWidget);
     connect(actionExit,&QAction::triggered,[this]{this->close();});
     connect(exitButton, &QPushButton::clicked, [this]{this->close();});
-    connect(startButton,&QPushButton::clicked, [pages]{pages->setCurrentIndex(1);});
+    connect(startButton,&QPushButton::clicked, [pages]{pages->setCurrentIndex(2);});
 
     connect(startButton, &QPushButton::clicked, [this,idk]
             {

@@ -1,12 +1,11 @@
 #include "sortvisualizer.h"
 
-#include "utils.h"
-#include "Sorters/sorters.h"
+#include "../Utilities/utils.h"
+#include "../Sorters/sorters.h"
 
 SortVisualizer::SortVisualizer(QWidget *parent)
     : QWidget(parent)
 {
-    qDebug()<<"Hello!";
     timer = new QTimer(this);
     sorter = new BubbleSorter(values,timer,compared1,compared2);
     connect(timer, &QTimer::timeout, this, &SortVisualizer::sortStep);
@@ -85,7 +84,6 @@ void SortVisualizer::changeSize(uint16_t s)
     if(s>width()) s=width();
     values.resize(s);
     randomizeValues();
-    resizeColumns();
 }
 
 void SortVisualizer::paintEvent(QPaintEvent *event)

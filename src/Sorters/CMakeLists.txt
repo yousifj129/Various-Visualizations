@@ -4,8 +4,11 @@ file(GLOB SORTERS_SRC
      "*.h"
      "*.cpp"
 )
+
 add_library(sorters ${SORTERS_SRC})
+
+add_dependencies(sorters utilities)
 
 target_include_directories(sorters PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(sorters PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(sorters PRIVATE Qt${QT_VERSION_MAJOR}::Widgets utilities)
