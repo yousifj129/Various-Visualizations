@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <QTimer>
 #include "../Sorters/abstractsorter.h"
+#include "../Sorters/sorter.h"
+
 class SortVisualizer : public QWidget
 {
     Q_OBJECT
@@ -15,7 +17,7 @@ public:
     ~SortVisualizer();
 
 public slots:
-    void changeSortMethod(int method);
+    void changeSortMethod(Sorter method);
     void startVisualization();
     void stopVisualization();
     void randomizeValues();

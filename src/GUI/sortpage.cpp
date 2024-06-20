@@ -1,12 +1,12 @@
 #include "sortpage.h"
 #include "ui_sortpage.h"
+#include "../Sorters/sorter.h"
 #include <QDebug>
 SortPage::SortPage(QStackedWidget *pages, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::SortPage)
 {
     ui->setupUi(this);
-    qDebug()<<"hi";
 
     auto *resetButton = ui->resetButton;
     auto *startVisualizationButton = ui->startVisualizationButton;
@@ -27,7 +27,7 @@ SortPage::SortPage(QStackedWidget *pages, QWidget *parent)
     });
 
     ui->sortMethodCombo->setStyleSheet("background-color:#535c68;");
-    connect(ui->sortMethodCombo, &QComboBox::activated, [this]{this->sorter->changeSortMethod(ui->sortMethodCombo->currentIndex());});
+    connect(ui->sortMethodCombo, &QComboBox::activated, [this]{this->sorter->changeSortMethod(Sorter(ui->sortMethodCombo->currentIndex()));});
     connect(resetButton,&QPushButton::clicked,[this]{this->sorter->reset();});
 }
 

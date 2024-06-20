@@ -17,6 +17,7 @@ CategoryMenu::CategoryMenu(QStackedWidget *pages, QWidget *parent)
         this->sortPage = new SortPage(pages,parent);
         pages->addWidget(this->sortPage);
         pages->setCurrentIndex(2);
+
     });
 
 
