@@ -18,32 +18,14 @@ MainWindow::MainWindow(QWidget *parent)
     auto *startButton = ui->startButton;
     auto *aboutButton = ui->aboutButton;
     auto *exitButton = ui->exitButton;
-    auto *resetButton = ui->resetButton;
-    auto *startVisualizationButton = ui->startVisualizationButton;
-    auto *stopVisualizationButton = ui->stopVisualizationButton;
-    auto *toMenuButton = ui->toMenuButton;
-    auto *idk = new QVBoxLayout(ui->customWidget);
     connect(actionExit,&QAction::triggered,[this]{this->close();});
     connect(exitButton, &QPushButton::clicked, [this]{this->close();});
-    connect(startButton,&QPushButton::clicked, [pages]{pages->setCurrentIndex(2);});
+    connect(startButton,&QPushButton::clicked, [this,pages]{
+        this->menu = new CategoryMenu(pages, this);
+        pages->addWidget(this->menu);
+        pages->setCurrentIndex(1);
+    });
 
-    connect(startButton, &QPushButton::clicked, [this,idk]
-            {
-            this->sorter = new SortVisualizer();
-        idk->addWidget(this->sorter);
-            });
-
-    connect(startVisualizationButton, &QPushButton::clicked, [this]{this->sorter->startVisualization();});
-    connect(stopVisualizationButton, &QPushButton::clicked, [this]{this->sorter->stopVisualization();});
-    connect(toMenuButton,&QPushButton::clicked, [pages]{pages->setCurrentIndex(0);});
-    connect(toMenuButton,&QPushButton::clicked, [this]{delete this->sorter;});
-    /*connect(ui->addRectButton, &QPushButton::clicked, [test]{
-        test->a=3;
-    });*/
-
-    ui->sortMethodCombo->setStyleSheet("background-color:#535c68;");
-    connect(ui->sortMethodCombo, &QComboBox::activated, [this]{this->sorter->changeSortMethod(ui->sortMethodCombo->currentIndex());});
-    connect(resetButton,&QPushButton::clicked,[this]{this->sorter->reset();});
 }
 
 

@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QtWidgets>
 #include <QDebug>
-#include "sortvisualizer.h"
+#include "categorymenu.h"
 
 
 
@@ -22,6 +22,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    SortVisualizer *sorter;
+    CategoryMenu *menu;
 };
 #endif // MAINWINDOW_H

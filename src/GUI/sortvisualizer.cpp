@@ -3,6 +3,7 @@
 #include "../Utilities/utils.h"
 #include "../Sorters/sorters.h"
 
+
 SortVisualizer::SortVisualizer(QWidget *parent)
     : QWidget(parent)
 {
@@ -24,29 +25,29 @@ void SortVisualizer::sortStep()
     update();
 }
 
-void SortVisualizer::changeSortMethod(int method)
+void SortVisualizer::changeSortMethod(Sorter method)
 {
     switch(method)
     {
-    case 0:
+    case Sorter::Bubble:
         delete sorter;
         sorter = new BubbleSorter(values,timer,compared1,compared2);
     break;
-    case 1:
+    case Sorter::Insertion:
     delete sorter;
     sorter = new InsertionSorter(values,timer,compared1,compared2);
     break;
-    case 2:
+    case Sorter::Selection:
     delete sorter;
     sorter = new SelectionSorter(values,timer,compared1,compared2);
     break;
-    case 3:
+    case Sorter::Merge:
 
     delete sorter;
     sorter = new MergeSorter(values,timer,compared1,compared2);
 
     break;
-    case 4:
+    case Sorter::Quick:
     delete sorter;
     sorter = new QuickSorter(values,timer,compared1,compared2);
     break;

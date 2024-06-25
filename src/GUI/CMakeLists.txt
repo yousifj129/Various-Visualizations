@@ -8,7 +8,7 @@ file(GLOB GUI_SRC
 
 add_library(gui ${GUI_SRC})
 
-add_dependencies(gui sorters utilities)
+add_dependencies(gui sorters)
 target_include_directories(gui PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 
