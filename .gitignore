@@ -31,6 +31,19 @@
 *.out
 *.app
 
-# CMake stuff
+.vs/
 
-*txt.user
+.vscode/
+
+Debug/
+circle-collider.dir/
+
+CMakeFiles/
+
+x64/
+*.vcxproj
+*.filters
+CMakeCache.txt
+*.user
+*.sln
+cmake_install.cmake

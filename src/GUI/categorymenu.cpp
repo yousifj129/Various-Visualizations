@@ -20,6 +20,11 @@ CategoryMenu::CategoryMenu(QStackedWidget *pages, QWidget *parent)
 
     });
 
+    connect(collisionButton, &QPushButton::clicked, [this,pages,parent]{
+        this->collisionDetectionPage = new CollisionDetectionPage(pages,parent);
+        pages->addWidget(this->collisionDetectionPage);
+        pages->setCurrentIndex(2);
+    });
 
     connect(mainmenuButton, &QPushButton::clicked, [this,pages]{
         pages->removeWidget(this);
