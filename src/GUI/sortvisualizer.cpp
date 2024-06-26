@@ -55,6 +55,10 @@ void SortVisualizer::changeSortMethod(Sorter method)
     delete sorter;
     sorter = new BubbleSorter(values,timer,compared1,compared2);
     break;
+    case Sorter::odd_and_even:
+    delete sorter;
+    sorter = new OddAndEvenSorter(values,timer,compared1,compared2);
+    break;
     }
     timer->stop();
 }

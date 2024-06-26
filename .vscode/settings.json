@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        ".fantomasignore": "ignore",
+        "ranges": "cpp",
+        "stack": "cpp"
+    }
+}

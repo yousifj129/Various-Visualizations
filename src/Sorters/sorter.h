@@ -6,6 +6,7 @@ enum class Sorter {
    Insertion,
    Selection,
    Merge,
-   Quick
+   Quick,
+   odd_and_even
 };
 #endif // SORTERSENUM_H
